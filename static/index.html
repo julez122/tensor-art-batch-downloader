@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tensor.Art Batch Downloader</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <p class="eyebrow">LOCAL ARCHIVE TOOL</p>
+        <h1>Tensor.Art Batch Downloader</h1>
+        <p class="intro">
+          Load a public profile, choose the artworks you are allowed to archive, and save the
+          files Tensor.art provides through its normal Download action.
+        </p>
+      </header>
+
+      <section class="panel" aria-labelledby="profile-title">
+        <div class="panel-heading">
+          <div>
+            <p class="step">1</p>
+            <h2 id="profile-title">Load a public profile</h2>
+          </div>
+        </div>
+        <label for="profile-url">Tensor.art profile link</label>
+        <div class="field-row">
+          <input
+            id="profile-url"
+            type="url"
+            inputmode="url"
+            placeholder="https://tensor.art/u/1021961773709850720/posts"
+            autocomplete="off"
+          />
+          <button id="scan-button" class="button primary" type="button">Load gallery</button>
+        </div>
+        <p class="hint">Long galleries may take a while to finish loading.</p>
+        <p id="scan-status" class="status" role="status"></p>
+      </section>
+
+      <section id="gallery-section" class="panel hidden" aria-labelledby="gallery-title">
+        <div class="panel-heading gallery-heading">
+          <div>
+            <p class="step">2</p>
+            <h2 id="gallery-title">Choose artworks</h2>
+            <p id="gallery-summary" class="muted"></p>
+          </div>
+          <div class="selection-actions">
+            <button id="select-all-button" class="button quiet" type="button">Select all</button>
+            <button id="select-none-button" class="button quiet" type="button">Select none</button>
+          </div>
+        </div>
+        <div id="gallery-grid" class="gallery-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="download-section" class="panel hidden" aria-labelledby="download-title">
+        <div class="panel-heading">
+          <div>
+            <p class="step">3</p>
+            <h2 id="download-title">Save selected artworks</h2>
+          </div>
+        </div>
+
+        <label for="destination">Destination folder</label>
+        <div class="field-row">
+          <input id="destination" type="text" autocomplete="off" />
+          <button id="browse-button" class="button secondary" type="button">Browse</button>
+        </div>
+
+        <fieldset class="metadata-options">
+          <legend>Metadata</legend>
+          <label class="radio-option">
+            <input type="radio" name="metadata" value="none" checked />
+            <span><strong>None</strong><small>Keep the downloaded file unchanged.</small></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="metadata" value="sidecar" />
+            <span><strong>Text file</strong><small>Save a readable same-name .txt file.</small></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="metadata" value="embed" />
+            <span><strong>Embed when safe</strong><small>Use EXIF or PNG text; unsupported files get a .txt fallback.</small></span>
+          </label>
+        </fieldset>
+
+        <div class="download-actions">
+          <button id="download-button" class="button primary" type="button">Download selected</button>
+          <button id="cancel-button" class="button danger hidden" type="button">Cancel after current image</button>
+        </div>
+        <p class="hint">
+          One artwork is processed at a time. Completed image IDs are remembered in the destination
+          folder so a later run resumes instead of downloading them again.
+        </p>
+      </section>
+
+      <section id="progress-section" class="panel hidden" aria-labelledby="progress-title">
+        <div class="panel-heading">
+          <div>
+            <p class="step">4</p>
+            <h2 id="progress-title">Download progress</h2>
+          </div>
+          <span id="job-state" class="pill">Waiting</span>
+        </div>
+        <p id="progress-message" class="status"></p>
+        <div class="progress-track" aria-hidden="true"><div id="progress-bar" class="progress-bar"></div></div>
+        <p id="progress-count" class="muted"></p>
+        <ul id="result-list" class="result-list"></ul>
+      </section>
+    </main>
+
+    <template id="artwork-template">
+      <article class="artwork-card">
+        <label class="artwork-select">
+          <input class="artwork-checkbox" type="checkbox" checked />
+          <span>Select artwork</span>
+        </label>
+        <a class="artwork-link" target="_blank" rel="noreferrer">
+          <img class="artwork-image" alt="" loading="lazy" />
+        </a>
+        <div class="artwork-footer">
+          <span class="artwork-id"></span>
+        </div>
+      </article>
+    </template>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

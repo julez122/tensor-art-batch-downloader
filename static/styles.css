@@ -1,0 +1,402 @@
+/* Define the restrained application color palette. */
+:root {
+  color-scheme: dark;
+  font-family: Inter, "Segoe UI", system-ui, sans-serif;
+  background: #10131a;
+  color: #f2f4f8;
+}
+
+/* Include padding and borders in every element's declared size. */
+* {
+  box-sizing: border-box;
+}
+
+/* Set the page background and remove the browser's default margin. */
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: radial-gradient(circle at top, #202a3f 0%, #10131a 42rem);
+}
+
+/* Constrain the local app to a comfortable readable width. */
+.app-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 54px 0 80px;
+}
+
+/* Give the introduction room before the workflow panels. */
+.hero {
+  max-width: 760px;
+  margin-bottom: 30px;
+}
+
+/* Present the small category label with tracking and accent color. */
+.eyebrow {
+  margin: 0 0 8px;
+  color: #8fb5ff;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+/* Set the main title's scale and compact vertical rhythm. */
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.7rem);
+  letter-spacing: -0.055em;
+}
+
+/* Keep secondary headings proportional to the panel content. */
+h2 {
+  margin: 0;
+  font-size: 1.22rem;
+  letter-spacing: -0.02em;
+}
+
+/* Style the opening explanation as subdued supporting copy. */
+.intro {
+  max-width: 680px;
+  margin: 14px 0 0;
+  color: #b9c1d1;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Group each workflow stage in a lightly elevated surface. */
+.panel {
+  margin-top: 18px;
+  padding: 24px;
+  border: 1px solid #303a4f;
+  border-radius: 18px;
+  background: rgba(20, 26, 39, 0.88);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.18);
+}
+
+/* Hide workflow stages until their prerequisite data is ready. */
+.hidden {
+  display: none !important;
+}
+
+/* Position heading content and optional controls at panel edges. */
+.panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+/* Keep gallery heading actions aligned with its title. */
+.gallery-heading {
+  align-items: center;
+}
+
+/* Display each stage number in the accent color. */
+.step {
+  margin: 0 0 4px;
+  color: #8fb5ff;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+/* Keep form labels clear and visually separated from controls. */
+label,
+legend {
+  display: block;
+  margin-bottom: 8px;
+  color: #dce3f2;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+/* Arrange a text field and its adjacent action on one line. */
+.field-row {
+  display: flex;
+  gap: 10px;
+}
+
+/* Give text controls a high-contrast, keyboard-friendly appearance. */
+input[type="url"],
+input[type="text"] {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #3c4860;
+  border-radius: 10px;
+  background: #0e131d;
+  color: #f5f7ff;
+  font: inherit;
+}
+
+/* Highlight focused text controls without removing the browser outline. */
+input[type="url"]:focus,
+input[type="text"]:focus {
+  border-color: #82a9ff;
+  outline: 3px solid rgba(130, 169, 255, 0.2);
+}
+
+/* Establish shared sizing and interactive affordances for buttons. */
+.button {
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 720;
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+/* Make enabled buttons respond subtly to pointer interaction. */
+.button:hover {
+  transform: translateY(-1px);
+}
+
+/* Communicate non-interactive button state without relying on color alone. */
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  transform: none;
+}
+
+/* Emphasize the primary action with the application accent. */
+.primary {
+  background: #7ea8ff;
+  color: #10131a;
+}
+
+/* Provide a toned-down alternative for secondary actions. */
+.secondary {
+  border-color: #4b5a75;
+  background: #1a2334;
+  color: #e8eefc;
+}
+
+/* Keep utility controls compact and low emphasis. */
+.quiet {
+  min-height: 34px;
+  padding: 6px 10px;
+  border-color: #3c4860;
+  background: transparent;
+  color: #cbd5ea;
+}
+
+/* Reserve a red treatment for cancellation actions. */
+.danger {
+  border-color: #80444b;
+  background: #4b232a;
+  color: #ffdce0;
+}
+
+/* Separate row-level selection controls consistently. */
+.selection-actions,
+.download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Use muted copy for explanatory or count information. */
+.hint,
+.muted {
+  margin: 10px 0 0;
+  color: #a7b1c4;
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+/* Reserve a stable area for loading, success, and error messages. */
+.status {
+  min-height: 1.45em;
+  margin: 12px 0 0;
+  color: #d9e2f4;
+  line-height: 1.45;
+}
+
+/* Lay artworks out in a responsive thumbnail grid. */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(172px, 1fr));
+  gap: 14px;
+}
+
+/* Frame an individual artwork thumbnail and its selection state. */
+.artwork-card {
+  overflow: hidden;
+  border: 1px solid #354158;
+  border-radius: 12px;
+  background: #121925;
+}
+
+/* Place the image selection checkbox above the thumbnail. */
+.artwork-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 9px 10px;
+  background: #192235;
+  font-size: 0.78rem;
+}
+
+/* Make the artwork link fill the available image area. */
+.artwork-link {
+  display: block;
+  background: #0c111a;
+}
+
+/* Keep thumbnails fully visible and evenly sized. */
+.artwork-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  object-fit: cover;
+}
+
+/* Provide a stable compact footer for the image identifier. */
+.artwork-footer {
+  padding: 8px 10px;
+  overflow: hidden;
+  color: #aeb9cd;
+  font-family: Consolas, monospace;
+  font-size: 0.72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Group metadata radio options in a separated, readable block. */
+.metadata-options {
+  display: grid;
+  gap: 10px;
+  margin: 22px 0;
+  padding: 14px;
+  border: 1px solid #364158;
+  border-radius: 12px;
+}
+
+/* Restore a modest horizontal inset for the fieldset title. */
+.metadata-options legend {
+  padding: 0 5px;
+}
+
+/* Align each metadata option's radio input and explanatory copy. */
+.radio-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Give metadata option labels a visible hover target. */
+.radio-option:hover {
+  background: #1a2333;
+}
+
+/* Keep the radio option description beneath its title. */
+.radio-option span {
+  display: grid;
+  gap: 3px;
+}
+
+/* Present metadata option helper text as subdued secondary information. */
+.radio-option small {
+  color: #aab4c7;
+  font-size: 0.83rem;
+  font-weight: 400;
+}
+
+/* Style the job state as a compact, rounded status token. */
+.pill {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #26334d;
+  color: #d9e7ff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+/* Establish the unfilled portion of the download progress bar. */
+.progress-track {
+  overflow: hidden;
+  height: 10px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: #303a4c;
+}
+
+/* Indicate completed job work within the progress track. */
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #6e99fb, #94c2ff);
+  transition: width 200ms ease;
+}
+
+/* Stack per-artwork outcomes without browser-default list decoration. */
+.result-list {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Make each result compact, scannable, and robust to long messages. */
+.result-list li {
+  padding: 9px 10px;
+  border-left: 3px solid #526989;
+  background: #151e2d;
+  color: #cbd5e8;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Use a positive accent for successfully saved artworks. */
+.result-list li.completed {
+  border-left-color: #55bc92;
+}
+
+/* Use a warm accent for skipped or unavailable artworks. */
+.result-list li.skipped {
+  border-left-color: #e7b565;
+}
+
+/* Use a red accent for failed artwork attempts. */
+.result-list li.failed {
+  border-left-color: #e47b83;
+}
+
+/* Reflow panel controls into vertical groups on narrow screens. */
+@media (max-width: 620px) {
+  /* Stack action controls beneath their related heading on mobile screens. */
+  .panel-heading,
+  .gallery-heading,
+  .field-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  /* Allow full-width utility buttons when horizontal room is limited. */
+  .selection-actions,
+  .download-actions {
+    width: 100%;
+  }
+
+  /* Reduce outer spacing so the app fits comfortably on phone screens. */
+  .app-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 28px;
+  }
+
+  /* Use a smaller panel inset on compact devices. */
+  .panel {
+    padding: 18px;
+  }
+}
